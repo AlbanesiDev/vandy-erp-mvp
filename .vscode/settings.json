@@ -1,0 +1,11 @@
+{
+  "angular-schematics.schematicsDefaultOptions": {
+    "angular-*": {
+      "stylesArray": true,
+      "skipStyle": true
+    },
+    "angular-component": {
+      "skipDisplayBlock": true
+    }
+  }
+}
