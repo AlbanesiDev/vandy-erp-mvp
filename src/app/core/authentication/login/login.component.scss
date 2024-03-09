@@ -1,0 +1,43 @@
+@import "../../../../styles/abstract/mixins";
+
+.container {
+  @include flex;
+  min-height: 100vh;
+  .btn__float {
+    @include absolute(auto, auto, 0, 0);
+    @include flex();
+    gap: $gap-md;
+    padding: 1rem;
+  }
+}
+
+.card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 600px;
+  height: 70vh;
+  padding: $padding-md $padding-xxl;
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
+  .card__header {
+    @include flex;
+    padding-block: 3rem;
+    h1 {
+      @include font($font-size-lg $font-weight-600);
+      color: black;
+    }
+  }
+  form {
+    @include flex(column, nowrap, flex-start, stretch);
+    gap: 3rem;
+    height: 100%;
+    input[type="text"]{
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .splitter {
+      width: 100%;
+      padding-inline: 1rem;
+    }
+  }
+}
