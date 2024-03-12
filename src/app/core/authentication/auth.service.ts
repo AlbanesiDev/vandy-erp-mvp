@@ -28,25 +28,27 @@ export class AuthService {
   userAuthSig = signal<boolean>(false);
 
   public registerWithEmail(username: string, email: string, password: string): Observable<void> {
-    const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password).then((response) =>
-      updateProfile(response.user, { displayName: username }),
-    );
-    return from(promise);
+    try {
+      const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password).then((response) =>
+        updateProfile(response.user, { displayName: username }),
+      );
+      return from(promise);
+    } catch (error) {
+      throw error;
+    }
   }
-
   public loginWithEmail(email: string, password: string): Observable<void> {
-    const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password).then(() => {});
-    return from(promise);
+    try {
+      const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password).then(() => {});
+      return from(promise);
+    } catch (error) {
+      throw error;
+    }
   }
-
   public signInWithGoogle(): Promise<UserCredential> {
     const provider = new GoogleAuthProvider();
     return this.deviceDetector.isMobile() ? this.#callRedirect(provider) : this.#callPopUp(provider);
   }
-
-  public sigInWithFacebook(): void {}
-
-  public sigInWithApple(): void {}
 
   public async signOut(): Promise<void> {
     try {
